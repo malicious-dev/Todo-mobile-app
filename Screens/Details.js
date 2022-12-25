@@ -1,13 +1,32 @@
 import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {firebase} from '../config'
 import {useNavigation} from '@react-navigation/native';
 
 const Details = ({route}) => {
   const todoref = firebase.firestore().collection('todos');
+  const [todos, setTodos] = useState([]);
+
   const [textHeading, onChangeHeadingText] = useState(route.params.item.name)
   const navigation = useNavigation();
   
+  useEffect(() => {
+  todoref
+  .orderBy('createdAt', 'desc')
+  .onSnapshot(
+    querySnapshot => {
+      const todos = []
+      querySnapshot.forEach((doc) => {
+        const {heading} = doc.data();
+        todos.push({
+          id: doc.id,
+          heading,
+        })
+      })
+      setTodos(todos)
+    }
+  )
+}, [])
   const updateTodo = () => {
     if(textHeading && textHeading.length > 0) {
       todoref
@@ -28,7 +47,7 @@ const Details = ({route}) => {
       style={styles.textField}
       onChangeText={onChangeHeadingText}
       value={textHeading}
-      placeholder="Update todo"
+      placeholder={route.params.item.heading}
        />
        <Pressable style= {styles.buttonUpdate}
        onPress={() => {updateTodo()}}
