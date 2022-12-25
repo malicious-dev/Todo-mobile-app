@@ -34,7 +34,7 @@ const Details = ({route}) => {
       .update({ 
         heading: textHeading,
       }).then(() => {
-        navigation.navigate('Home')
+        navigation.navigate('Todo Malicious App')
       }).catch((error) => {
         alert(error.message)
       })
