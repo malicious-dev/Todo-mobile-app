@@ -91,8 +91,8 @@ autoCapitalize='none'
         onPress={() => deleteTodo(item)}
         style={styles.todoIcon}
       />
-      <View>
-        <Text>
+      <View style={styles.inputContainer}>
+        <Text style={styles.itemHeading}>
           {item.heading[0].toUpperCase()+ item.heading.slice(1)}
         </Text>
       </View>
