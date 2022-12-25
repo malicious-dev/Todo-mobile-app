@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "firebaseTodo",
-    "slug": "firebaseTodo",
+    "slug": "todo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7d890df1-e381-4de1-af91-c10882b7a477"
+      }
+    },
+    "owner": "malicious-dev"
   }
 }
